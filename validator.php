@@ -30,7 +30,7 @@ class UserValidator
               trigger_error("'$field' is not present in the data");
               return;
             }
-          }
+        }
 
         // SCRIPT CARRIES ON HERE IF NO ERROR
         // ACCESS THE KEYS
@@ -48,17 +48,19 @@ class UserValidator
     private function validateEmail(){
 
         $val = test_input($this->data['email']);
-        if(empty($val)){
-          $this->addError('email', 'email cannot be empty');
+        if (empty($val)) {
+            $this->addError('email', 'email cannot be empty');
         } else {
-          if(!filter_var($val, FILTER_VALIDATE_EMAIL)){
-            $this->addError('email', 'email must be a valid email address');
-          }
+            if (!filter_var($val, FILTER_VALIDATE_EMAIL)) {
+                $this->addError('email', 'email must be a valid email address');
+            } else {
+                $_SESSION['email'] = $this->data['email'];
+            }
         }
-      }
+    }
 
     // Methods
-    private function validateStreet() {
+    private function validateStreet(){
 
         $val = test_input($this->data['street']);
 
@@ -67,6 +69,8 @@ class UserValidator
         } else {
             if (!preg_match('/^[a-zA-Z\s]+$/', $val)) {
                 $this->addError('street', 'street can only contain letters');
+            } else {
+                $_SESSION['street'] = $this->data['street'];
             }
         }
     }
@@ -80,6 +84,8 @@ class UserValidator
         } else {
             if (!is_numeric($val)) {
                 $this->addError('streetnumber', 'streetnumber can only contain numbers');
+            } else {
+                $_SESSION['streetnumber'] = $this->data['streetnumber'];
             }
         }
     }
@@ -93,6 +99,8 @@ class UserValidator
         } else {
             if (!preg_match('/^[a-zA-Z\s]+$/', $val)) {
                 $this->addError('city', 'city can only contain letters');
+            } else {
+                $_SESSION['city'] = $this->data['city'];
             }
         }
     }
@@ -106,6 +114,8 @@ class UserValidator
         } else {
             if (!is_numeric($val)) {
                 $this->addError('zipcode', 'zipcode can only contain numbers');
+            } else {
+                $_SESSION['zipcode'] = $this->data['zipcode'];
             }
         }
     }

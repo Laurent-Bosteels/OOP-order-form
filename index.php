@@ -36,3 +36,5 @@ $totalValue = 0;
 
 require 'validator.php';
 require 'form-view.php';
+
+whatIsHappening();
