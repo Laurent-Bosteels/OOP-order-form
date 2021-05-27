@@ -59,17 +59,55 @@ class UserValidator
 
     // Methods
     private function validateStreet() {
+
+        $val = test_input($this->data['street']);
+
+        if (empty($val)) {
+            $this->addError('street', 'street cannot be empty');
+        } else {
+            if (!preg_match('/^[a-zA-Z\s]+$/', $val)) {
+                $this->addError('street', 'street can only contain letters');
+            }
+        }
     }
 
     // Methods
     private function validateStreetNumber() {
+        $val = test_input($this->data['streetnumber']);
+
+        if (empty($val)) {
+            $this->addError('streetnumber', 'streetnumber cannot be empty');
+        } else {
+            if (!is_numeric($val)) {
+                $this->addError('streetnumber', 'streetnumber can only contain numbers');
+            }
+        }
     }
+
     // Methods
     private function validateCity() {
+        $val = test_input($this->data['city']);
+
+        if (empty($val)) {
+            $this->addError('city', 'city cannot be empty');
+        } else {
+            if (!preg_match('/^[a-zA-Z\s]+$/', $val)) {
+                $this->addError('city', 'city can only contain letters');
+            }
+        }
     }
 
     // Methods
     private function validateZipcode() {
+        $val = test_input($this->data['zipcode']);
+
+        if (empty($val)) {
+            $this->addError('zipcode', 'zipcode cannot be empty');
+        } else {
+            if (!is_numeric($val)) {
+                $this->addError('zipcode', 'zipcode can only contain numbers');
+            }
+        }
     }
 
     // Methods
